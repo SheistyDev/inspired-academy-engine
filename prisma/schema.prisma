@@ -15,6 +15,11 @@ enum Role {
   TUTOR
 }
 
+enum SessionStatus {
+  PENDING
+  CONFIRMED
+}
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -30,13 +35,14 @@ model User {
 }
 
 model Session {
-  id        String   @id @default(uuid())
+  id        String        @id @default(uuid())
   tutorId   String
   studentId String
   startTime DateTime
   endTime   DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status    SessionStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 
   tutor    User      @relation("TutorSessions", fields: [tutorId], references: [id])
   student  User      @relation("StudentSessions", fields: [studentId], references: [id])
