@@ -7,5 +7,48 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TUTOR
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(STUDENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tutorSessions   Session[] @relation("TutorSessions")
+  studentSessions Session[] @relation("StudentSessions")
+  payments        Payment[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  tutorId   String
+  studentId String
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tutor    User      @relation("TutorSessions", fields: [tutorId], references: [id])
+  student  User      @relation("StudentSessions", fields: [studentId], references: [id])
+  payments Payment[]
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  amount    Float
+  sessionId String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  session Session @relation(fields: [sessionId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
 }
