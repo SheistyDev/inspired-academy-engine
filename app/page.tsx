@@ -1,9 +1,19 @@
 import Image from "next/image";
+import { BookingCalendar } from "@/components/BookingCalendar";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black py-12">
+      <div className="w-full max-w-5xl px-4">
+        <div className="mb-12 text-center">
+          <h1 className="text-4xl font-bold tracking-tight mb-4 text-black dark:text-zinc-50">Book an Appointment</h1>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400">Select a date and time that works best for you.</p>
+        </div>
+
+        <BookingCalendar />
+      </div>
+
+      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-16 px-16 bg-white dark:bg-black sm:items-start mt-24 border-t">
         <Image
           className="dark:invert"
           src="/next.svg"
