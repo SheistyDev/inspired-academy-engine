@@ -1,0 +1,17 @@
+
+> truenorth-engine-template@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 500ms
+
+ GET /api/auth/signin 200 in 1952ms (next.js: 1904ms, application-code: 48ms)
+ POST /api/auth/callback/credentials 302 in 84ms (next.js: 33ms, application-code: 51ms)
+○ Compiling / ...
+ GET / 200 in 6.0s (next.js: 5.3s, application-code: 699ms)
+[browser] Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /api/availability?date=2026-05-12 200 in 1162ms (next.js: 642ms, application-code: 520ms)
+ GET /student 200 in 2.0s (next.js: 1865ms, application-code: 153ms)
+✓ Compiled in 348ms
