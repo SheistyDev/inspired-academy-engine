@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -67,9 +68,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
+    <div className="flex min-h-screen items-center justify-center p-4 bg-zinc-50 dark:bg-zinc-950">
       <Card className="w-full max-w-md">
-        <CardHeader>
+        <CardHeader className="flex flex-col items-center">
+          <Image
+            src="/inspired-logo.jpeg"
+            alt="Inspired Academy Logo"
+            width={200}
+            height={200}
+            className="w-full max-w-[200px] h-auto object-contain rounded-xl mix-blend-multiply dark:mix-blend-normal dark:bg-white p-2 mb-4"
+            priority
+          />
           <CardTitle className="text-2xl text-center">Login</CardTitle>
           <CardDescription className="text-center">
             Enter your email and password to access your account

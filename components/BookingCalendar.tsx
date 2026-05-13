@@ -57,6 +57,7 @@ export function BookingCalendar() {
             weekday: "text-muted-foreground rounded-md w-full font-medium text-sm pb-4",
             week: "flex w-full mt-2",
             day: "h-14 w-full p-0 font-normal aria-selected:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-lg text-lg transition-colors",
+            selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground font-bold shadow-md",
             today: "bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50",
             outside: "text-muted-foreground opacity-50",
             disabled: "text-muted-foreground opacity-30",
