@@ -44,6 +44,8 @@ model Session {
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
 
+  notes    String?
+
   tutor    User      @relation("TutorSessions", fields: [tutorId], references: [id])
   student  User      @relation("StudentSessions", fields: [studentId], references: [id])
   payments Payment[]
