@@ -1,75 +1,120 @@
-import Image from "next/image";
 import { BookingCalendar } from "@/components/BookingCalendar";
+import { Button } from "@/components/ui/button";
+import { BookOpen, Target, Zap, Star } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black py-12">
-      <div className="w-full max-w-5xl px-4">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-4 text-black dark:text-zinc-50">Book an Appointment</h1>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400">Select a date and time that works best for you.</p>
-        </div>
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center py-24 px-4 bg-zinc-50 dark:bg-zinc-950">
+        <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-zinc-900 dark:text-zinc-50">
+          Master Your Learning Journey
+        </h1>
+        <p className="text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 max-w-2xl mb-10">
+          Personalized tutoring tailored to your unique learning style.
+          Book a session today and unlock your full potential.
+        </p>
+        <Button size="lg" asChild className="text-lg px-8 py-6">
+          <Link href="#booking">Book Your Session Now</Link>
+        </Button>
+      </section>
 
-        <BookingCalendar />
-      </div>
+      {/* Features Section */}
+      <section className="py-24 px-4 md:px-8 bg-white dark:bg-zinc-900">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-zinc-900 dark:text-zinc-50">
+            Why Choose Our Platform?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-primary/10 p-4 rounded-full mb-6 text-primary">
+                <BookOpen size={40} />
+              </div>
+              <h3 className="text-2xl font-semibold mb-4 text-zinc-900 dark:text-zinc-50">Personalized Learning</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Our curriculum adapts to your pace and learning style, ensuring you grasp every concept thoroughly.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-primary/10 p-4 rounded-full mb-6 text-primary">
+                <Target size={40} />
+              </div>
+              <h3 className="text-2xl font-semibold mb-4 text-zinc-900 dark:text-zinc-50">Goal-Oriented</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Set specific goals and track your progress with our targeted learning modules and assessments.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-primary/10 p-4 rounded-full mb-6 text-primary">
+                <Zap size={40} />
+              </div>
+              <h3 className="text-2xl font-semibold mb-4 text-zinc-900 dark:text-zinc-50">Expert Tutors</h3>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Learn from industry professionals and experienced educators dedicated to your success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-16 px-16 bg-white dark:bg-black sm:items-start mt-24 border-t">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      {/* Testimonials Section */}
+      <section className="py-24 px-4 md:px-8 bg-zinc-50 dark:bg-zinc-950">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-zinc-900 dark:text-zinc-50">
+            What Our Students Say
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah Jenkins",
+                role: "High School Student",
+                content: "The personalized tutoring completely changed my approach to math. I went from struggling to excelling in just a few months!",
+              },
+              {
+                name: "David Chen",
+                role: "College Freshman",
+                content: "Booking sessions is so easy, and the tutors are incredibly knowledgeable. Highly recommend for anyone needing extra help.",
+              },
+              {
+                name: "Emily Rodriguez",
+                role: "Career Changer",
+                content: "I needed to learn coding fast, and this platform provided the exact guidance and support I needed to land my first job.",
+              }
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 flex flex-col h-full">
+                <div className="flex text-amber-400 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} size={18} fill="currentColor" />
+                  ))}
+                </div>
+                <p className="text-zinc-600 dark:text-zinc-400 flex-grow mb-6 italic">
+                  &quot;{testimonial.content}&quot;
+                </p>
+                <div>
+                  <p className="font-semibold text-zinc-900 dark:text-zinc-50">{testimonial.name}</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-500">{testimonial.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Booking Section */}
+      <section id="booking" className="py-24 px-4 bg-white dark:bg-zinc-900">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-zinc-900 dark:text-zinc-50">
+              Ready to Start?
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400">
+              Select a date and time that works best for you to book your first session.
+            </p>
+          </div>
+          <BookingCalendar />
         </div>
-      </main>
+      </section>
     </div>
   );
 }
