@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -14,15 +15,38 @@ export async function POST(req: Request) {
       sig,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (err: any) {
-    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
+  } catch (err: unknown) {
+    const error = err as Error;
+    return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
   }
 
   // Handle the event
   switch (event.type) {
     case "checkout.session.completed":
-      const session = event.data.object;
-      // TODO: Fulfill the purchase
+      const session = event.data.object as unknown as {
+        metadata?: { sessionId?: string };
+        id: string;
+        amount_total: number | null;
+      };
+
+      const sessionId = session.metadata?.sessionId;
+
+      if (sessionId) {
+        const updatedSession = await prisma.session.update({
+          where: { id: sessionId },
+          data: { status: "CONFIRMED" },
+        });
+
+        if (session.amount_total !== null) {
+          await prisma.payment.create({
+            data: {
+              sessionId: updatedSession.id,
+              userId: updatedSession.studentId,
+              amount: session.amount_total / 100, // Stripe amount is in cents
+            },
+          });
+        }
+      }
       console.log("Checkout session completed:", session.id);
       break;
     default:
