@@ -52,16 +52,14 @@ export function BookingCalendar() {
           classNames={{
             months: "w-full",
             month: "w-full space-y-4",
-            table: "w-full border-collapse space-y-1",
-            head_row: "flex w-full",
-            head_cell: "text-muted-foreground rounded-md w-full font-medium text-sm pb-4",
-            row: "flex w-full mt-2",
-            cell: "text-center text-sm p-0 relative focus-within:relative focus-within:z-20 w-full",
+            month_grid: "w-full border-collapse space-y-1",
+            weekdays: "flex w-full",
+            weekday: "text-muted-foreground rounded-md w-full font-medium text-sm pb-4",
+            week: "flex w-full mt-2",
             day: "h-14 w-full p-0 font-normal aria-selected:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-lg text-lg transition-colors",
-            day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground font-bold shadow-md",
-            day_today: "bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50",
-            day_outside: "text-muted-foreground opacity-50",
-            day_disabled: "text-muted-foreground opacity-30",
+            today: "bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50",
+            outside: "text-muted-foreground opacity-50",
+            disabled: "text-muted-foreground opacity-30",
           }}
           disabled={(d) => d < new Date(new Date().setHours(0, 0, 0, 0))}
         />

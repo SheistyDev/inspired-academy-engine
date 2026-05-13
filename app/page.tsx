@@ -2,12 +2,23 @@ import { BookingCalendar } from "@/components/BookingCalendar";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Target, Zap, Star } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-24 px-4 bg-zinc-50 dark:bg-zinc-950">
+        <div className="mb-8">
+          <Image
+            src="/inspired-logo.jpeg"
+            alt="Inspired Academy Logo"
+            width={400}
+            height={400}
+            className="w-full max-w-[300px] md:max-w-[400px] h-auto object-contain rounded-xl mix-blend-multiply dark:mix-blend-normal dark:bg-white p-4"
+            priority
+          />
+        </div>
         <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-zinc-900 dark:text-zinc-50">
           Master Your Learning Journey
         </h1>
