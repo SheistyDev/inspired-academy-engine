@@ -1,102 +1,76 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
-import type { NextAuthOptions } from "next-auth";
 import { Role } from "@prisma/client";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; // Switched to bcryptjs which we installed earlier
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "text", placeholder: "admin@inspiredacademy.com" },
         password: { label: "Password", type: "password" }
       },
-      async authorize() {
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com", role: "STUDENT" }
-        if (user) {
-          return user
-        } else {
-          return null
-          name: "Credentials",
-            credentials: {
-            email: { label: "Email", type: "text", placeholder: "you@example.com" },
-      password: { label: "Password", type: "password" }
-    },
       async authorize(credentials) {
-        if(!credentials?.email || !credentials?.password) {
-      return null;
-    }
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
 
         try {
-    const user = await prisma.user.findUnique({
-      where: {
-        email: credentials.email
-      }
-    });
+          // 1. Find user in Postgres Database
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email }
+          });
 
-    if(!user || !user.password) {
-      return null;
+          if (!user || !user.password) {
+            return null;
           }
 
-const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
-if (!isPasswordValid) {
-  return null;
-}
+          // 2. Verify hashed password
+          const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
 
-return {
-  id: user.id,
-  email: user.email,
-  name: user.name,
-  role: user.role
-};
-        } catch (error: unknown) {
-  console.error("Authentication error:", error);
-  return null;
-}
+          if (!isPasswordValid) {
+            return null;
+          }
+
+          // 3. Return user object if successful
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            role: user.role
+          };
+        } catch (error) {
+          console.error("Authentication error:", error);
+          return null;
+        }
       }
     })
   ],
-callbacks: {
-    async session({ session, token }) {
-    if (session.user && token) {
-      // use Object.assign to avoid 'any'
-      Object.assign(session.user, { id: token.id, role: token.role })
-    }
-    return session;
-  },
+  callbacks: {
+    // Attach the role and ID to the JWT token
     async jwt({ token, user }) {
-    if (user) {
-      token.id = user.id;
-      token.role = (user as { role?: string }).role;
-    }
-    return token;
-  }
-}
-}
-
-const handler = NextAuth(authOptions)
-
-export { handler as GET, handler as POST }
-    async jwt({ token, user }) {
-  if (user) {
-    token.role = user.role;
-  }
-  return token;
-},
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+      return token;
+    },
+    // Pass the token properties to the active session
     async session({ session, token }) {
-  if (session.user) {
-    session.user.role = token.role as Role;
-  }
-  return session;
-}
+      if (session.user) {
+        session.user.role = token.role as Role;
+      }
+      return session;
+    }
   },
-session: {
-  strategy: "jwt"
-}
+  session: {
+    strategy: "jwt"
+  },
+  pages: {
+    signIn: '/login', // Tells NextAuth to use your custom Shadcn login page
+  }
 };
 
 const handler = NextAuth(authOptions);

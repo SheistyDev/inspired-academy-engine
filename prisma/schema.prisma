@@ -13,6 +13,7 @@ datasource db {
 enum Role {
   STUDENT
   TUTOR
+  ADMIN
 }
 
 enum SessionStatus {
