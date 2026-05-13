@@ -1,0 +1,215 @@
+
+> truenorth-engine-template@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+- Environments: .env
+✓ Ready in 499ms
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+○ Compiling / ...
+ GET / 200 in 5.2s (next.js: 4.7s, application-code: 517ms)
+Error fetching availability: Error [PrismaClientInitializationError]:
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany()` invocation in
+/app/.next/dev/server/chunks/[root-of-the-server]__0y9u30v._.js:102:170
+
+   99 const dayStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$startOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["startOfDay"])(date);
+  100 const dayEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$endOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["endOfDay"])(date);
+  101 // Query existing sessions for this date
+→ 102 const existingSessions = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at <unknown> (app/api/availability/route.ts:24:51)
+    at async GET (app/api/availability/route.ts:24:30)
+  22 |
+  23 |     // Query existing sessions for this date
+> 24 |     const existingSessions = await prisma.session.findMany({
+     |                                                   ^
+  25 |       where: {
+  26 |         startTime: {
+  27 |           gte: dayStart, {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/availability?date=2026-05-13 500 in 1185ms (next.js: 766ms, application-code: 419ms)
+[browser] Error fetching timeslots: Error: Failed to fetch timeslots
+    at fetchTimeslots (components/BookingCalendar.tsx:35:17)
+  33 |         const res = await fetch(`/api/availability?date=${formattedDate}`);
+  34 |         if (!res.ok) {
+> 35 |           throw new Error("Failed to fetch timeslots");
+     |                 ^
+  36 |         }
+  37 |         const data = await res.json();
+  38 |         setTimeslots(data.timeslots || []); (components/BookingCalendar.tsx:40:17)
+ GET / 200 in 152ms (next.js: 5ms, application-code: 147ms)
+Error fetching availability: Error [PrismaClientInitializationError]:
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany()` invocation in
+/app/.next/dev/server/chunks/[root-of-the-server]__0y9u30v._.js:102:170
+
+   99 const dayStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$startOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["startOfDay"])(date);
+  100 const dayEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$endOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["endOfDay"])(date);
+  101 // Query existing sessions for this date
+→ 102 const existingSessions = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at <unknown> (app/api/availability/route.ts:24:51)
+    at async GET (app/api/availability/route.ts:24:30)
+  22 |
+  23 |     // Query existing sessions for this date
+> 24 |     const existingSessions = await prisma.session.findMany({
+     |                                                   ^
+  25 |       where: {
+  26 |         startTime: {
+  27 |           gte: dayStart, {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/availability?date=2026-05-13 500 in 235ms (next.js: 4ms, application-code: 231ms)
+[browser] Error fetching timeslots: Error: Failed to fetch timeslots
+    at fetchTimeslots (components/BookingCalendar.tsx:35:17)
+  33 |         const res = await fetch(`/api/availability?date=${formattedDate}`);
+  34 |         if (!res.ok) {
+> 35 |           throw new Error("Failed to fetch timeslots");
+     |                 ^
+  36 |         }
+  37 |         const data = await res.json();
+  38 |         setTimeslots(data.timeslots || []); (components/BookingCalendar.tsx:40:17)
+ GET / 200 in 164ms (next.js: 4ms, application-code: 160ms)
+Error fetching availability: Error [PrismaClientInitializationError]:
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany()` invocation in
+/app/.next/dev/server/chunks/[root-of-the-server]__0y9u30v._.js:102:170
+
+   99 const dayStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$startOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["startOfDay"])(date);
+  100 const dayEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$endOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["endOfDay"])(date);
+  101 // Query existing sessions for this date
+→ 102 const existingSessions = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at <unknown> (app/api/availability/route.ts:24:51)
+    at async GET (app/api/availability/route.ts:24:30)
+  22 |
+  23 |     // Query existing sessions for this date
+> 24 |     const existingSessions = await prisma.session.findMany({
+     |                                                   ^
+  25 |       where: {
+  26 |         startTime: {
+  27 |           gte: dayStart, {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/availability?date=2026-05-13 500 in 203ms (next.js: 3ms, application-code: 199ms)
+[browser] Error fetching timeslots: Error: Failed to fetch timeslots
+    at fetchTimeslots (components/BookingCalendar.tsx:35:17)
+  33 |         const res = await fetch(`/api/availability?date=${formattedDate}`);
+  34 |         if (!res.ok) {
+> 35 |           throw new Error("Failed to fetch timeslots");
+     |                 ^
+  36 |         }
+  37 |         const data = await res.json();
+  38 |         setTimeslots(data.timeslots || []); (components/BookingCalendar.tsx:40:17)
+ GET / 200 in 184ms (next.js: 4ms, application-code: 180ms)
+Error fetching availability: Error [PrismaClientInitializationError]:
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany()` invocation in
+/app/.next/dev/server/chunks/[root-of-the-server]__0y9u30v._.js:102:170
+
+   99 const dayStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$startOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["startOfDay"])(date);
+  100 const dayEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$endOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["endOfDay"])(date);
+  101 // Query existing sessions for this date
+→ 102 const existingSessions = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at <unknown> (app/api/availability/route.ts:24:51)
+    at async GET (app/api/availability/route.ts:24:30)
+  22 |
+  23 |     // Query existing sessions for this date
+> 24 |     const existingSessions = await prisma.session.findMany({
+     |                                                   ^
+  25 |       where: {
+  26 |         startTime: {
+  27 |           gte: dayStart, {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/availability?date=2026-05-13 500 in 260ms (next.js: 3ms, application-code: 257ms)
+[browser] Error fetching timeslots: Error: Failed to fetch timeslots
+    at fetchTimeslots (components/BookingCalendar.tsx:35:17)
+  33 |         const res = await fetch(`/api/availability?date=${formattedDate}`);
+  34 |         if (!res.ok) {
+> 35 |           throw new Error("Failed to fetch timeslots");
+     |                 ^
+  36 |         }
+  37 |         const data = await res.json();
+  38 |         setTimeslots(data.timeslots || []); (components/BookingCalendar.tsx:40:17)
+Error fetching availability: Error [PrismaClientInitializationError]:
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany()` invocation in
+/app/.next/dev/server/chunks/[root-of-the-server]__0y9u30v._.js:102:170
+
+   99 const dayStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$startOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["startOfDay"])(date);
+  100 const dayEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$endOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["endOfDay"])(date);
+  101 // Query existing sessions for this date
+→ 102 const existingSessions = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at <unknown> (app/api/availability/route.ts:24:51)
+    at async GET (app/api/availability/route.ts:24:30)
+  22 |
+  23 |     // Query existing sessions for this date
+> 24 |     const existingSessions = await prisma.session.findMany({
+     |                                                   ^
+  25 |       where: {
+  26 |         startTime: {
+  27 |           gte: dayStart, {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/availability?date=2026-06-06 500 in 175ms (next.js: 4ms, application-code: 171ms)
+[browser] Error fetching timeslots: Error: Failed to fetch timeslots
+    at fetchTimeslots (components/BookingCalendar.tsx:35:17)
+  33 |         const res = await fetch(`/api/availability?date=${formattedDate}`);
+  34 |         if (!res.ok) {
+> 35 |           throw new Error("Failed to fetch timeslots");
+     |                 ^
+  36 |         }
+  37 |         const data = await res.json();
+  38 |         setTimeslots(data.timeslots || []); (components/BookingCalendar.tsx:40:17)
+ GET / 200 in 213ms (next.js: 6ms, application-code: 208ms)
+Error fetching availability: Error [PrismaClientInitializationError]:
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany()` invocation in
+/app/.next/dev/server/chunks/[root-of-the-server]__0y9u30v._.js:102:170
+
+   99 const dayStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$startOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["startOfDay"])(date);
+  100 const dayEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$endOfDay$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["endOfDay"])(date);
+  101 // Query existing sessions for this date
+→ 102 const existingSessions = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].session.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at <unknown> (app/api/availability/route.ts:24:51)
+    at async GET (app/api/availability/route.ts:24:30)
+  22 |
+  23 |     // Query existing sessions for this date
+> 24 |     const existingSessions = await prisma.session.findMany({
+     |                                                   ^
+  25 |       where: {
+  26 |         startTime: {
+  27 |           gte: dayStart, {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/availability?date=2026-05-13 500 in 276ms (next.js: 3ms, application-code: 273ms)
+[browser] Error fetching timeslots: Error: Failed to fetch timeslots
+    at fetchTimeslots (components/BookingCalendar.tsx:35:17)
+  33 |         const res = await fetch(`/api/availability?date=${formattedDate}`);
+  34 |         if (!res.ok) {
+> 35 |           throw new Error("Failed to fetch timeslots");
+     |                 ^
+  36 |         }
+  37 |         const data = await res.json();
+  38 |         setTimeslots(data.timeslots || []); (components/BookingCalendar.tsx:40:17)
